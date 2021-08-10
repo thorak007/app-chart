@@ -1,0 +1,14 @@
+mysqlSecret:
+  name: mysql-secret 
+  mysqlUser: petclinic
+  mysqlPass: petclinic
+
+deploy:
+  name: app-deploy
+  containerImage: thorak2001/spring-petclinic
+  containerTag: latest
+  mysqlUrl: local
+
+service:
+  name: app-service
+  type: NodePort
