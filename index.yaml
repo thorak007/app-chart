@@ -3,12 +3,12 @@ entries:
   mychart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-08-11T13:11:32.592200043+03:00"
+    created: "2021-08-11T15:25:20.419793196+03:00"
     description: A Helm chart for Kubernetes
-    digest: cb0010342215abd22e903211ba34ab12a3a75ce43da08b9c42f6f380563a2cec
+    digest: 603c5a44884fdd305117d37ebfd92939ec3d2b702d7c2695e5577dd923b6efdf
     name: mychart
     type: application
     urls:
     - https://thorak007.github.io/app-chart/sources/mychart-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-11T13:11:32.591219993+03:00"
+generated: "2021-08-11T15:25:20.419351396+03:00"
