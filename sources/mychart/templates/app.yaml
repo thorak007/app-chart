@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deploy 
+  name: app-deploy
+  namespace: {{ .Values.namespace }} 
   labels:
     app: petclinic
 spec:
@@ -42,6 +43,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.service.name }}
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   selector:

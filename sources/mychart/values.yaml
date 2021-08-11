@@ -1,3 +1,5 @@
+namespace: default
+
 mysqlSecret:
   name: mysql-secret 
 
