@@ -13,7 +13,4 @@ deploy:
 service:
   name: app-service
   type: NodePort
-<<<<<<< HEAD
   nodePort: 
-=======
->>>>>>> parent of 43fa0fd... Added nodePort var to service
