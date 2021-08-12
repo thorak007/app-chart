@@ -13,4 +13,4 @@ deploy:
 service:
   name: app-service
   type: NodePort
-  nodePort: 30036
+  nodePort: 
