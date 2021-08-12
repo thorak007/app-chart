@@ -1,10 +1,8 @@
-namespace: default
-
-mysqlSecret:
-  name: mysql-secret 
-
 deploy:
   name: app-deploy
+  labels:
+    app: petclinic
+  replicas: 2
   dockerSecretName: dockerhub-credentials
   containerImage: thorak2001/spring-petclinic
   containerTag: latest
@@ -13,4 +11,13 @@ deploy:
 service:
   name: app-service
   type: NodePort
+  labels:
+    app: petclinic
   nodePort: 
+
+secret:
+  name: mysql-secret
+  mysqlUser: petclinic
+  mysqlPass: petclinic
+
+namespace: default
