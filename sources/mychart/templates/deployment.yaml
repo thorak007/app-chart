@@ -18,11 +18,11 @@ spec:
       containers:
       - name: java-app
         image: {{ .Values.deploy.containerImage }}:{{ .Values.deploy.containerTag }}
-        command: ["./mvnw"]
-        args: ["spring-boot:run", "-Dspring-boot.run.profiles=mysql"]
         env:
           - name: MYSQL_URL
             value: jdbc:mysql://{{ .Values.deploy.mysqlUrl }}/petclinic
+          - name: PORT
+            value: "{{ .Values.deploy.appPort }}"
           - name: MYSQL_USER
             valueFrom:
               secretKeyRef:
@@ -34,6 +34,6 @@ spec:
                 name: {{ .Values.secret.name }}
                 key: MYSQL_PASS
         ports:
-        - containerPort: 8080
+        - containerPort: {{ .Values.deploy.appPort }}
       imagePullSecrets:
       - name: {{ .Values.deploy.dockerSecretName }}
