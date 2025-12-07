@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.app.name }}-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.app.app_label }}
+  type: {{ .Values.app.service.type }}
   selector:
     app: {{ .Values.app.app_label }}
   ports:
@@ -35,22 +35,22 @@ spec:
       containers:
       - name: {{ .Values.app.name }}-app
         image: {{ .Values.app.deployment.containerImageName }}:{{ .Values.app.deployment.containerImageTag }}
+        imagePullPolicy: Never
         env:
           - name: MYSQL_URL
             value: jdbc:mysql://{{ .Values.app.deployment.databaseUrl }}/{{ .Values.app.name }}
-          - name: PORT
-            value: {{ .Values.app.deployment.applicationPort }}
           - name: MYSQL_USER
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.db.secret.name }} 
                 key: MYSQL_USER
-          - name: MYSQL_PASS
+          - name: MYSQL_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.db.secret.name }}
                 key: MYSQL_PASS
         ports:
-        - containerPort: {{ .Values.app.deployment.applicationPort }}
-      imagePullSecrets:
-      - name: {{ .Values.app.deployment.registrySecretName }}
+          - name: http
+            containerPort: {{ .Values.app.deployment.applicationPort }}
+      # imagePullSecrets:
+      # - name: {{ .Values.app.deployment.registrySecretName }}
