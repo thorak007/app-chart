@@ -9,7 +9,7 @@ entries:
     name: mychart
     type: application
     urls:
-    - https://thorak007.github.io/app-chart/sources/mychart-0.2.0.tgz/sources/mychart-0.2.0.tgz
+    - https://thorak007.github.io/app-chart/sources/mychart-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.16.0
@@ -19,6 +19,6 @@ entries:
     name: mychart
     type: application
     urls:
-    - https://thorak007.github.io/app-chart/sources/mychart-0.2.0.tgz/sources/mychart-0.1.0.tgz
+    - https://thorak007.github.io/app-chart/sources/mychart-0.2.0.tgz
     version: 0.1.0
 generated: "2025-12-07T19:41:06.256182+02:00"
