@@ -17,24 +17,24 @@ spec:
   ports:
     - port: {{ .Values.db.servicePort }}
   selector:
-    app: {{ .Values.db.labels.app }}
+    app: {{ .Values.db.app_label }}
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.db.name }}=demo-db
+  name: {{ .Values.db.name }}-deployment
   labels:
-    app: {{ .Values.db.labels.app }}
+    app: {{ .Values.db.app_label }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.db.labels.app }}
+      app: {{ .Values.db.app_label }}
   template:
     metadata:
       labels:
-        app: demo-db
+        app: {{ .Values.db.app_label }}
     spec:
       containers:
         - image: mysql:{{ .Values.db.deployment.containerImageTag }}
@@ -50,8 +50,8 @@ spec:
             - name: MYSQL_PASS
               valueFrom:
                 secretKeyRef:
-                    name: {{ .Values.db.secret.name }}
-                    key: MYSQL_PASS
+                  name: {{ .Values.db.secret.name }}
+                  key: MYSQL_PASS
           ports:
-            - containerPort: {{ .Values.db.service.servicePort }}
+            - containerPort: {{ .Values.db.servicePort }}
               name: mysql

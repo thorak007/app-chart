@@ -1,24 +1,36 @@
-deploy:
-  name: app-deploy
-  labels:
-    app: petclinic
-  replicas: 2
-  dockerSecretName: dockerhub-credentials
-  containerImage: thorak2001/spring-petclinic
-  containerTag: latest
-  appPort: 8080
-  mysqlUrl: local
+namespace: &base_name petclinic
 
-service:
-  name: app-service
-  type: NodePort
-  labels:
-    app: petclinic
-  nodePort: 
+app:
+  name: *base_name
 
-secret:
-  name: mysql-secret
-  mysqlUser: petclinic
-  mysqlPass: petclinic
+  app_label: *base_name
 
-namespace: default
+  deployment:
+    replicas: 2
+    applicationPort: 8080
+    registrySecretName: dockerhub-credentials
+    containerImageName: thorak2001/spring-petclinic
+    containerImageTag: latest
+    databaseUrl: local
+
+  service:
+    protocol: TCP
+    port: 80
+    type: NodePort
+    NodePort:
+
+db:
+  name: &base_db_name petclinic-db
+
+  app_label: *base_db_name
+
+  servicePort: 3306
+
+  deployment:
+    db_name: *base_name
+    containerImageTag: "9.5"
+
+  secret:
+    name: mysql-secret
+    db_user: *base_name
+    db_pass: *base_name
